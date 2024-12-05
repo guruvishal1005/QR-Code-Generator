@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-     <div class="container">
+    <div class="container">
         <p>Enter your Text or URL</p>
         <input 
             type="text" 
@@ -16,38 +16,37 @@
             id="qrtext" 
             onkeydown="checkEnterKey(event)"
         >
-
         <div id="imgbox">
-            <img src="" alt="" id="qrimg">
+            <img src="" alt="Generated QR Code" id="qrimg">
         </div>
-        <button onclick="generateQR()">Generate Qr Code</button>
-     </div>
+        <button onclick="generateQR()">Generate QR Code</button>
+    </div>
 
-     <script>
-      let imgbox = document.getElementById("imgbox");
-      let qrimg = document.getElementById("qrimg");
-      let qrtext = document.getElementById("qrtext");
+    <script>
+        let imgbox = document.getElementById("imgbox");
+        let qrimg = document.getElementById("qrimg");
+        let qrtext = document.getElementById("qrtext");
 
-      // Generate QR Code Function
-      function generateQR(){
-        if(qrtext.value.length > 0){
-            qrimg.src = "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=" + qrtext.value;
-            imgbox.classList.add("show-img");
-        } else {
-            qrtext.placeholder = "Field cannot be empty";
-            qrtext.classList.add('error');
-            setTimeout(() => {
-                qrtext.classList.remove('error');
-            }, 5000);
+        // Generate QR Code Function
+        function generateQR() {
+            if (qrtext.value.length > 0) {
+                qrimg.src = "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=" + qrtext.value;
+                imgbox.classList.add("show-img");
+            } else {
+                qrtext.placeholder = "Field cannot be empty";
+                qrtext.classList.add('error');
+                setTimeout(() => {
+                    qrtext.classList.remove('error');
+                }, 5000);
+            }
         }
-      }
 
-      // Check if Enter key is pressed
-      function checkEnterKey(event) {
-        if (event.key === "Enter") {
-            generateQR();
+        // Check if Enter key is pressed
+        function checkEnterKey(event) {
+            if (event.key === "Enter") {
+                generateQR();
+            }
         }
-      }
-     </script>
+    </script>
 </body>
 </html>
